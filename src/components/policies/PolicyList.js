@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import moment from 'moment';
 import { getPolicies } from '../../actions/actionTypes';
-import PoliciesHeader from './PolicyHeader';
-import PolicyCard from './PolicyCard';
-
+import { DataTable, TableHeader, TableBody, CustomTd } from '../common/Table';
 
 const ListContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 10px 0px;
+  background-color: rgb(255, 255, 255);
+  margin: 5em 2em;
+  padding: 1em 1em;
 `;
+
+const ListTitle = styled.h1`
+  font-size: 36px;
+  font-weight: bold;
+`
 
 class PolicyList extends Component {
 
@@ -22,22 +26,30 @@ class PolicyList extends Component {
 
   render() {
     const { policies } = this.props;
-    const policyKeys = [ 'Identifier', 'Amount Insured', 'Installment Payment', 'Inception Date' ];
-    const policiesList = policies.map(p => (<PolicyCard 
-      key={p.id} 
-      id={p.id}
-      email={p.email} 
-      amountInsured={p.amountInsured}  
-      installmentPayment={p.installmentPayment}
-      inceptionDate={p.inceptionDate} />  
-    ));
     return (
-      <div>
-        <PoliciesHeader keys={policyKeys} />
-        <ListContainer>
-         { policiesList }
-        </ListContainer>
-      </div>
+      <ListContainer>
+        <ListTitle>Policies</ListTitle>
+        <DataTable>
+          <TableHeader>
+            <tr>
+              <th>Identifier</th>
+              <th>Amount Insured</th>
+              <th>Installment Payment</th>
+              <th>Inception Date</th>
+            </tr>
+          </TableHeader>
+          <TableBody>
+            {policies.map(p => (
+              <tr key={p.id}>
+                <CustomTd>{p.id}</CustomTd>
+                <CustomTd>{p.amountInsured}</CustomTd>
+                <CustomTd>{p.installmentPayment.toString()}</CustomTd>
+                <CustomTd> {moment(p.inceptionDate).format("DD/MM/YYYY")} </CustomTd>
+              </tr>
+            ))}
+          </TableBody>
+        </DataTable>
+      </ListContainer>
     )
   }
 }
