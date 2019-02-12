@@ -9,6 +9,8 @@ import App from "../App/App";
 
 const store = createStore(reducers, composeWithDevTools(middlewares));
 
+
+
 const Root = () => (
   <Provider store={store}>
     <Router>
