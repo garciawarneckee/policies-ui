@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import moment from 'moment';
-import { getPolicies } from '../../actions/actionTypes';
+import { getPolicies } from '../../actions';
 import { DataTable, TableHeader, TableBody, CustomTd } from '../common/Table';
 
 const ListContainer = styled.div`
