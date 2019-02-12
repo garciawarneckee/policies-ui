@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import policyReducer from './policyReducer';
+import loginReducer from './login.reducer';
+import policyReducer from './policy.reducer';
 
-const rootReducer = combineReducers({ policies: policyReducer });
+const rootReducer = combineReducers({ login: loginReducer, policies: policyReducer });
 
 export default rootReducer;

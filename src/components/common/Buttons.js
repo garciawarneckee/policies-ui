@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const PrimaryButton = styled.button`
 width: 100%;
-border: solid 2px #BB3A3A;
-background: #BB3A3A;
+border: solid 2px #154360;
+background: #154360;
 color: #fff;
 min-height: 40px;
 cursor: pointer;

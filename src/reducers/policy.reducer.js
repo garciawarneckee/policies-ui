@@ -1,4 +1,4 @@
-import { REQUEST_POLICIES, RECEIVE_POLICIES } from '../actions/actionTypes';
+import { REQUEST_POLICIES, RECEIVE_POLICIES } from '../actions';
 
 function policies(state = { policies: [] }, action) {
   switch(action.type) {

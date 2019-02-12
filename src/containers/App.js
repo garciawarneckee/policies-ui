@@ -16,6 +16,7 @@ const AppContainer = styled.div`
 const Container = styled.div`
   display: inherit;
   height: inherit;
+  flex-direction: inherit;
 `;
 
 class App extends Component {

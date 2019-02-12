@@ -1,31 +1,60 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { login } from '../../actions';
+
 import styled from 'styled-components';
 import { PrimaryButton } from '../common/Buttons';
 import { Input, Label } from '../common/Form';
 import loginLogo from '../../login-image.png';
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
+
+  constructor(props) {
+    super(props);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(form) {
+    form.preventDefault();
+    const username = form.target[0].value;
+    const password = form.target[1].value;
+    this.props.login(username, password);
+  }
 
   render() {
+    const errorMessage = (this.props.failedLogin) ? <ErrorMessage>{ this.props.message }</ErrorMessage> : '';
     return( 
-      <LoginContainer> 
+      <LoginContainer onSubmit={this.onSubmit}> 
         <LoginLogo alt="login image" src={loginLogo} />
-        <LoginTitle>Welcome to Polices App!</LoginTitle>
+        <LoginTitle>Welcome to Policies App!</LoginTitle>
         <LoginSubtitle>Please enter your credentials to start using the app </LoginSubtitle>
         <InputGroup>
-          <Label for="username">Username</Label>
+          <Label>Username</Label>
           <Input name="username" type="text" />
         </InputGroup>
         <InputGroup>
-          <Label for="password">Password</Label>
+          <Label>Password</Label>
           <Input name="password" type="password" />
         </InputGroup>
+        { errorMessage }
         <LoginButton type="submit">Login</LoginButton>
       </LoginContainer>    
     )
   }
 
 }
+
+const mapStateToProps = state => ({
+    isLogged: state.login.isLogged,
+    failedLogin: state.login.failedLogin,
+    message: state.login.message
+});
+
+const mapDispatchToProps = dispatch => ({
+    login: (username, password) => dispatch(login(username, password))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
 
 const LoginContainer = styled.form`
   display: inherit;
@@ -67,3 +96,9 @@ const LoginSubtitle = styled.h3`
   margin-left: auto;
   margin-right: auto;
 `;
+
+const ErrorMessage = styled.p`
+  color: #C0392B;
+  text-align: center;
+  font-weight: bold;
+`
