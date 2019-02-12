@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from '../middlewares/history';
 
 export const REQUEST_LOGIN = 'REQUEST_LOGIN';
 export const SUCCESSFUL_LOGIN = 'SUCCESSFUL_LOGIN';
@@ -11,10 +12,10 @@ function requestLogin(username) {
   }
 }
 
-function successfulLogin(response) {
+function successfulLogin(user) {
   return {
     type: SUCCESSFUL_LOGIN,
-    payload: response.data
+    payload: user
   }
 }
 
@@ -31,7 +32,10 @@ export function login(username, password) {
     try {
       const credentials = { username: username, password: password };
       const response = await axios.post("/auth/login", credentials);
-      dispatch(successfulLogin(response));
+      const client = response.data.client;
+      dispatch(successfulLogin(client));
+      localStorage.setItem('user', JSON.stringify(client));
+      history.push(`/home`);
     } catch(error) {
       dispatch(failedLogin(error.response.data.message));
     }

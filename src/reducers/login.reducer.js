@@ -11,7 +11,8 @@ function login(state = {}, action) {
     case SUCCESSFUL_LOGIN: {
       return {
         ...state,
-        isLogged: true
+        isLogged: true,
+        client: action.payload.client
       }
     }
     case FAIL_LOGIN: {

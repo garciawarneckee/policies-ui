@@ -6,6 +6,7 @@ import PoliciyList from '../components/policies/PolicyList';
 import Home from '../pages/Home/Home';
 import Navbar from '../components/Navbar/Navbar';
 import LoginForm from '../components/login/Login';
+import { PrivateRoute } from '../components/common/PrivateRoute';
 
 const AppContainer = styled.div`
   display:flex;
@@ -42,9 +43,9 @@ const LoginRoutes = () => (
 const DefaultContainer = () => (
   <Container>
     <Navbar />
-    <Route path="/home" component={Home} />
-    <Route path="/policies" component={PoliciyList} />
-    <Route path="/clients" component={Clients} />
+    <PrivateRoute path="/home" component={Home} />
+    <PrivateRoute path="/policies" component={PoliciyList} />
+    <PrivateRoute path="/clients" component={Clients} />
   </Container>
 );
 
