@@ -26,7 +26,7 @@ class App extends Component {
         <AppContainer>
           <Switch>
             <Route exact path="/(login)" component={LoginRoutes} />
-            <Route component={DefaultContainer} />
+            <Route component={AppRoutes} />
           </Switch>
         </AppContainer>
     );
@@ -40,7 +40,7 @@ const LoginRoutes = () => (
   </Container>
 );
 
-const DefaultContainer = () => (
+const AppRoutes = () => (
   <Container>
     <Navbar />
     <PrivateRoute path="/home" component={Home} />
