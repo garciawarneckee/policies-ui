@@ -8,7 +8,7 @@ import { DataTable, TableHeader, TableBody, CustomTd } from '../common/Table';
 const ListContainer = styled.div`
   box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 10px 0px;
   background-color: rgb(255, 255, 255);
-  margin: 5em 2em;
+  margin: 2em 2em;
   padding: 1em 1em;
 `;
 
@@ -39,10 +39,10 @@ class PolicyList extends Component {
             </tr>
           </TableHeader>
           <TableBody>
-            {policies.map(p => (
+            {policies && policies.map(p => (
               <tr key={p.id}>
                 <CustomTd>{p.id}</CustomTd>
-                <CustomTd>{p.amountInsured}</CustomTd>
+                <CustomTd>{p.amountInsured} €</CustomTd>
                 <CustomTd>{p.installmentPayment.toString()}</CustomTd>
                 <CustomTd> {moment(p.inceptionDate).format("DD/MM/YYYY")} </CustomTd>
               </tr>

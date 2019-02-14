@@ -17,8 +17,10 @@ function receivePolicies(policies) {
 export function getPolicies() {
   return async dispatch => {
     dispatch(requestPolicies());
-    const response = await axios.get('http://www.mocky.io/v2/580891a4100000e8242b75c5');
-    return dispatch(receivePolicies(response.data.policies));
+    const client = JSON.parse(localStorage.getItem('user'));
+    const clientName = client.name;
+    const response = await axios.get(`/policies?name=${clientName}&offset=0&quantity=10`);
+    return dispatch(receivePolicies(response.data.content));
   }
 }
 

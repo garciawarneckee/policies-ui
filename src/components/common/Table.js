@@ -31,7 +31,7 @@ export const DataTable = styled(Table)`
 `;
 
 export const TableHeader = styled.thead`
-  background-color: #BB3A3A;
+  background-color: #154360;
 `;
 
 export const TableBody = styled.tbody`
