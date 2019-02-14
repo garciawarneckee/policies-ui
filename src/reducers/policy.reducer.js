@@ -5,14 +5,19 @@ function policies(state = { policies: [] }, action) {
     case REQUEST_POLICIES: {
       return {
         ...state,
-        isFetching: true
+        isFetching: true,
       }
     }
     case RECEIVE_POLICIES: {
+      const newPolicies = [...state.policies, ...action.payload.content];
       return {
         ...state,
         isFetching: false,
-        policies: action.payload
+        policies: newPolicies,
+        total: action.payload.total,
+        pageSize: action.payload.quantity,
+        elementsInPage: action.payload.elementsInPage,
+        startIndex: action.payload.offset
       }
     }
     default: return state;

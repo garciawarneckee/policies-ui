@@ -14,13 +14,13 @@ function receivePolicies(policies) {
   }
 }
 
-export function getPolicies() {
+export function getPolicies(offset, quantity) {
   return async dispatch => {
     dispatch(requestPolicies());
     const client = JSON.parse(localStorage.getItem('user'));
     const clientName = client.name;
-    const response = await axios.get(`/policies?name=${clientName}&offset=0&quantity=10`);
-    return dispatch(receivePolicies(response.data.content));
+    const response = await axios.get(`/policies?name=${clientName}&offset=${offset}&quantity=${quantity}`);
+    return dispatch(receivePolicies(response.data));
   }
 }
 
