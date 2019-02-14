@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import moment from 'moment';
-import { getPolicies } from '../../actions';
+import { getPolicies, cleanPolicies } from '../../actions';
 import { DataTable, TableHeader, TableBody, CustomTd } from '../common/Table';
 import Pager from './Pager';
 
@@ -16,6 +16,11 @@ class PolicyList extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(getPolicies(0, 10));
+  }
+
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+    dispatch(cleanPolicies());
   }
 
   /**
@@ -76,7 +81,7 @@ export default connect(mapStateToProps)(PolicyList);
 const ListContainer = styled.div`
   box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 10px 0px;
   background-color: rgb(255, 255, 255);
-  margin: 2em 2em;
+  margin: 1em 1em;
   padding: 1em 1em;
 `;
 

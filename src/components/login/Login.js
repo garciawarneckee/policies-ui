@@ -45,9 +45,9 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = state => ({
-    isLogged: state.login.isLogged,
-    failedLogin: state.login.failedLogin,
-    message: state.login.message
+    isLogged: state.auth.isLogged,
+    failedLogin: state.auth.failedLogin,
+    message: state.auth.message
 });
 
 const mapDispatchToProps = dispatch => ({

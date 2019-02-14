@@ -1,4 +1,4 @@
-import { REQUEST_POLICIES, RECEIVE_POLICIES } from '../actions';
+import { REQUEST_POLICIES, RECEIVE_POLICIES, FLUSH_POLICIES } from '../actions';
 
 function policies(state = { policies: [] }, action) {
   switch(action.type) {
@@ -18,6 +18,12 @@ function policies(state = { policies: [] }, action) {
         pageSize: action.payload.quantity,
         elementsInPage: action.payload.elementsInPage,
         startIndex: action.payload.offset
+      }
+    }
+    case FLUSH_POLICIES: {
+      return {
+        ...state,
+        policies: []
       }
     }
     default: return state;
