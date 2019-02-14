@@ -4,7 +4,7 @@ import { Switch, Route, Redirect} from 'react-router-dom';
 import Clients from '../pages/Clients/Clients';
 import PoliciyList from '../components/policies/PolicyList';
 import Home from '../pages/Home/Home';
-import Navbar from '../components/Navbar/Navbar';
+import Navbar from '../components/navbar/Navbar';
 import LoginForm from '../components/login/Login';
 import { PrivateRoute } from '../components/common/PrivateRoute';
 
@@ -35,7 +35,7 @@ class App extends Component {
 
 const LoginRoutes = () => (
   <Container>
-    <Route exact path="/" render={() => <Redirect to="/login"/>} />
+    <Route exact path="/" render={ () => <Redirect to="/login"/> } />
     <Route path="/login" component={LoginForm} />
   </Container>
 );

@@ -1,7 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
-export const REQUEST_POLICIES = "REQUEST_POLICIES";
-export const RECEIVE_POLICIES = "RECEIVE_POLICIES";
+export const REQUEST_POLICIES = 'REQUEST_POLICIES';
+export const RECEIVE_POLICIES = 'RECEIVE_POLICIES';
+export const FLUSH_POLICIES = 'FLUSH_POLICIES';
 
 function requestPolicies() {
   return { type: REQUEST_POLICIES }
@@ -14,6 +15,12 @@ function receivePolicies(policies) {
   }
 }
 
+function flushPolicies() {
+  return {
+    type: FLUSH_POLICIES
+  }
+}
+
 export function getPolicies(offset, quantity) {
   return async dispatch => {
     dispatch(requestPolicies());
@@ -22,5 +29,9 @@ export function getPolicies(offset, quantity) {
     const response = await axios.get(`/policies?name=${clientName}&offset=${offset}&quantity=${quantity}`);
     return dispatch(receivePolicies(response.data));
   }
+}
+
+export function cleanPolicies() {
+  return async dispatch => { dispatch(flushPolicies()) }
 }
 
