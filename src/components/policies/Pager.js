@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { OutlinedButton } from '../common/Buttons';
 
 export default class Pager extends Component {
 
@@ -24,18 +25,3 @@ const PagerContainer = styled.div`
 	padding: 2em 0em;
 `;
 
-const OutlinedButton = styled.button`
-	border: 0px;
-	background-color: white;
-	font-family: Roboto;
-	font-size: 16px;
-	font-weight: bold;
-
-	&:hover { 
-		cursor: pointer;
-	}
-
-	&:focus {
-		outline: 0;
-	}
-`;

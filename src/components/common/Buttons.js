@@ -14,3 +14,19 @@ text-transform: uppercase;
   border-color: #BBB;
   color: #BBB;
 }`;
+
+export const OutlinedButton = styled.button`
+	border: 0px;
+	background-color: white;
+	font-family: Roboto;
+	font-size: 16px;
+	font-weight: bold;
+
+	&:hover { 
+		cursor: pointer;
+	}
+
+	&:focus {
+		outline: 0;
+	}
+`;

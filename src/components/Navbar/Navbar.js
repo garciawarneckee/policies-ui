@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { getloggedUserData } from '../../actions';
+import { getloggedUserData, logout } from '../../actions';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
+import { OutlinedButton } from '../common/Buttons';
 
 class Navbar extends Component {
 
@@ -25,7 +26,9 @@ class Navbar extends Component {
 					<ProfileIcon icon={faUser} />
 					<UserData>{this.props.user.name}</UserData>
 				</Profile>
-				<LogoutIcon icon={faPowerOff} />
+				<OutlinedButton onClick={this.props.logout}>
+					<LogoutIcon icon={faPowerOff} />
+				</OutlinedButton>
 			</NavContainer> : null;
 
 		return (navigation)
@@ -37,7 +40,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	getUserData: () => { dispatch(getloggedUserData()) }
+	getUserData: () => { dispatch(getloggedUserData()) },
+	logout: () => { dispatch(logout()) }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
@@ -93,14 +97,15 @@ const UserData = styled.span`
 	font-weight: bold;
 `;
 
- const ProfileIcon = styled(FontAwesomeIcon)`
+const ProfileIcon = styled(FontAwesomeIcon)`
 	color: #DC7633;
 	margin-right: .5em;
  `;
- const LogoutIcon = styled(FontAwesomeIcon)`
+
+const LogoutIcon = styled(FontAwesomeIcon)`
 	color: #C0392B;
 
 	&:hover {
 		cursor: pointer;
 	}
- `;
+	`;

@@ -5,6 +5,10 @@ export const REQUEST_LOGIN = 'REQUEST_LOGIN';
 export const SUCCESSFUL_LOGIN = 'SUCCESSFUL_LOGIN';
 export const FAIL_LOGIN = 'FAIL_LOGIN';
 
+export const REQUEST_LOGOUT = 'REQUEST_LOGOUT';
+export const SUCCESSFUL_LOGOUT = 'SUCCESSFUL_LOGOUT';
+export const FAIL_LOGOUT = 'FAIL_LOGOUT';
+
 function requestLogin(username) {
   return {
     type: REQUEST_LOGIN,
@@ -26,6 +30,26 @@ function failedLogin(error) {
   }
 }
 
+function requestLogout() {
+  return {
+    type: REQUEST_LOGOUT
+  }
+}
+
+function successfulLogout() {
+  return {
+    type: SUCCESSFUL_LOGOUT
+  }
+}
+
+function failedLogout(error) {
+  return {
+    type: FAIL_LOGOUT,
+    payload: error
+  }
+}
+
+
 export function login(username, password) {
   return async dispatch => {
     dispatch(requestLogin(username));
@@ -38,6 +62,20 @@ export function login(username, password) {
       history.push(`/home`);
     } catch(error) {
       dispatch(failedLogin(error.response.data.message));
+    }
+  }
+}
+
+export function logout() {
+  return async dispatch => {
+    dispatch(requestLogout());
+    try {
+      await axios.post("/auth/logout");
+      dispatch(successfulLogout());
+      localStorage.removeItem('user');
+      history.push(`/login`);
+    } catch(error) {
+      dispatch(failedLogout(error.response.data.message));
     }
   }
 }
