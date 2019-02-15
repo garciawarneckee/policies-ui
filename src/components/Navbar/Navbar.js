@@ -51,7 +51,7 @@ const NavContainer = styled.div`
 	flex-flow: row wrap;
 	justify-content: flex-end;
 	align-items: center;
-	padding: 0em 2em;
+	padding: 0em 1em;
 	min-height: 3em;
 `;
 

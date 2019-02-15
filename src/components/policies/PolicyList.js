@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 import moment from 'moment';
 import { getPolicies, cleanPolicies } from '../../actions';
 import { DataTable, TableHeader, TableBody, CustomTd } from '../common/Table';
+import { DefaultContainer } from '../common/Containers';
+import { Title } from '../common/Paragraphs';
 import Pager from './Pager';
 
 class PolicyList extends Component {
@@ -34,8 +35,8 @@ class PolicyList extends Component {
   render() {
     const { policies, elementsInPage, startIndex, total, pageSize } = this.props;
     return (
-      <ListContainer>
-        <ListTitle>Policies {elementsInPage + startIndex} of {total} </ListTitle>
+      <DefaultContainer>
+        <Title>Policies {elementsInPage + startIndex} of {total} </Title>
         <DataTable>
           <TableHeader>
             <tr>
@@ -51,7 +52,7 @@ class PolicyList extends Component {
                 <CustomTd>{p.id}</CustomTd>
                 <CustomTd>{p.amountInsured} €</CustomTd>
                 <CustomTd>{p.installmentPayment.toString()}</CustomTd>
-                <CustomTd> {moment(p.inceptionDate).format("DD/MM/YYYY")} </CustomTd>
+                <CustomTd>{moment(p.inceptionDate).format("DD/MM/YYYY")}</CustomTd>
               </tr>
             ))}
           </TableBody>
@@ -63,7 +64,7 @@ class PolicyList extends Component {
           pageSize={pageSize}
           onClick={this.onPageChange}
         />
-      </ListContainer>
+      </DefaultContainer>
     )
   }
 }
@@ -77,15 +78,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(PolicyList);
-
-const ListContainer = styled.div`
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 10px 0px;
-  background-color: rgb(255, 255, 255);
-  margin: 1em 1em;
-  padding: 1em 1em;
-`;
-
-const ListTitle = styled.h1`
-  font-size: 36px;
-  font-weight: bold;
-`;
