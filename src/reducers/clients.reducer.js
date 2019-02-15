@@ -1,4 +1,8 @@
-import { SEARCH_CLIENT_REQUEST, SEARCH_CLIENT_SUCCESFULL, SEARCH_CLIENT_FAIL } from '../actions';
+import { 
+  SEARCH_CLIENT_REQUEST, 
+  SEARCH_CLIENT_SUCCESFULL, 
+  SEARCH_CLIENT_FAIL, 
+  FLUSH_CLIENT } from '../actions';
 
 function clients(state = { client: {} }, action) {
   switch(action.type) {
@@ -12,6 +16,7 @@ function clients(state = { client: {} }, action) {
       return {
         ...state,
         isFetching: false,
+        hasError: false,
         client: action.payload
       }
     }
@@ -19,7 +24,14 @@ function clients(state = { client: {} }, action) {
       return {
         ...state,
         isFetching: false,
+        hasError: true,
         error: action.payload
+      }
+    }
+    case FLUSH_CLIENT: {
+      return {
+        ...state,
+        client: {}
       }
     }
     default: return state;
