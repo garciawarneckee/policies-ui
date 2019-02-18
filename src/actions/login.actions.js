@@ -1,5 +1,6 @@
-import customAxios from '../middlewares/custom-axios';
+import axios from 'axios';
 import history from '../middlewares/history';
+import { withSecurityHeaders } from '../middlewares/axios-headers-helper';
 
 export const REQUEST_LOGIN = 'REQUEST_LOGIN';
 export const SUCCESSFUL_LOGIN = 'SUCCESSFUL_LOGIN';
@@ -54,8 +55,9 @@ export function login(username, password) {
   return async dispatch => {
     dispatch(requestLogin(username));
     try {
+      const headers = withSecurityHeaders();
       const credentials = { username: username, password: password };
-      const response = await customAxios.post("/auth/login", credentials);
+      const response = await axios.post("/auth/login", credentials, { headers: headers });
       const token = response.data.token;
       dispatch(successfulLogin(token));
       localStorage.setItem('authToken', token);
@@ -70,7 +72,7 @@ export function logout() {
   return async dispatch => {
     dispatch(requestLogout());
     try {
-      await customAxios.post("/auth/logout");
+      await axios.post("/auth/logout");
       dispatch(successfulLogout());
       localStorage.removeItem('authToken');
       history.push(`/login`);

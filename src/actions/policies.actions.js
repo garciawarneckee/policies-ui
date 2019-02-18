@@ -1,4 +1,5 @@
-import customAxios from '../middlewares/custom-axios';
+import axios from 'axios';
+import { withSecurityHeaders } from '../middlewares/axios-headers-helper';
 
 export const REQUEST_POLICIES = 'REQUEST_POLICIES';
 export const RECEIVE_POLICIES = 'RECEIVE_POLICIES';
@@ -24,9 +25,10 @@ function flushPolicies() {
 export function getPolicies(offset, quantity) {
   return async dispatch => {
     dispatch(requestPolicies());
-    const clientResponse = await customAxios.get('/auth/me');
+    const headers = withSecurityHeaders();
+    const clientResponse = await axios.get('/auth/me', { headers: headers });
     const client = clientResponse.data.client;
-    const response = await customAxios.get(`/policies?name=${client.name}&offset=${offset}&quantity=${quantity}`);
+    const response = await axios.get(`/policies?name=${client.name}&offset=${offset}&quantity=${quantity}`, { headers: headers });
     return dispatch(receivePolicies(response.data));
   }
 }

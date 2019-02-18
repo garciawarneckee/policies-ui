@@ -1,4 +1,5 @@
-import customAxios from '../middlewares/custom-axios';
+import axios from 'axios';
+import { withSecurityHeaders } from '../middlewares/axios-headers-helper';
 
 export const SEARCH_CLIENT_REQUEST = 'SEARCH_CLIENT_REQUEST';
 export const SEARCH_CLIENT_SUCCESFULL = 'SEARCH_CLIENT_SUCCESFULL';
@@ -36,7 +37,8 @@ export function searchClient(criteria) {
   return async dispatch => {
     dispatch(searchClientRequest(criteria));
     try {
-      const response = await customAxios.get(`/clients/search?criteria=${criteria}`);
+      const headers = withSecurityHeaders();
+      const response = await axios.get(`/clients/search?criteria=${criteria}`, { headers: headers });
       const client = response.data.client;
       dispatch(searchClientSuccess(client));
     } catch(error) {
