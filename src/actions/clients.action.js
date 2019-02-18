@@ -1,4 +1,4 @@
-import axios from 'axios';
+import customAxios from '../middlewares/custom-axios';
 
 export const SEARCH_CLIENT_REQUEST = 'SEARCH_CLIENT_REQUEST';
 export const SEARCH_CLIENT_SUCCESFULL = 'SEARCH_CLIENT_SUCCESFULL';
@@ -36,7 +36,7 @@ export function searchClient(criteria) {
   return async dispatch => {
     dispatch(searchClientRequest(criteria));
     try {
-      const response = await axios.get(`/clients/search?criteria=${criteria}`);
+      const response = await customAxios.get(`/clients/search?criteria=${criteria}`);
       const client = response.data.client;
       dispatch(searchClientSuccess(client));
     } catch(error) {

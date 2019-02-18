@@ -1,4 +1,4 @@
-import axios from 'axios';
+import customAxios from '../middlewares/custom-axios';
 
 export const REQUEST_POLICIES = 'REQUEST_POLICIES';
 export const RECEIVE_POLICIES = 'RECEIVE_POLICIES';
@@ -24,9 +24,9 @@ function flushPolicies() {
 export function getPolicies(offset, quantity) {
   return async dispatch => {
     dispatch(requestPolicies());
-    const client = JSON.parse(localStorage.getItem('user'));
-    const clientName = client.name;
-    const response = await axios.get(`/policies?name=${clientName}&offset=${offset}&quantity=${quantity}`);
+    const clientResponse = await customAxios.get('/auth/me');
+    const client = clientResponse.data.client;
+    const response = await customAxios.get(`/policies?name=${client.name}&offset=${offset}&quantity=${quantity}`);
     return dispatch(receivePolicies(response.data));
   }
 }

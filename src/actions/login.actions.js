@@ -1,4 +1,4 @@
-import axios from 'axios';
+import customAxios from '../middlewares/custom-axios';
 import history from '../middlewares/history';
 
 export const REQUEST_LOGIN = 'REQUEST_LOGIN';
@@ -55,10 +55,10 @@ export function login(username, password) {
     dispatch(requestLogin(username));
     try {
       const credentials = { username: username, password: password };
-      const response = await axios.post("/auth/login", credentials);
-      const client = response.data.client;
-      dispatch(successfulLogin(client));
-      localStorage.setItem('user', JSON.stringify(client));
+      const response = await customAxios.post("/auth/login", credentials);
+      const token = response.data.token;
+      dispatch(successfulLogin(token));
+      localStorage.setItem('authToken', token);
       history.push(`/home`);
     } catch(error) {
       dispatch(failedLogin(error.response.data.message));
@@ -70,9 +70,9 @@ export function logout() {
   return async dispatch => {
     dispatch(requestLogout());
     try {
-      await axios.post("/auth/logout");
+      await customAxios.post("/auth/logout");
       dispatch(successfulLogout());
-      localStorage.removeItem('user');
+      localStorage.removeItem('authToken');
       history.push(`/login`);
     } catch(error) {
       dispatch(failedLogout(error.response.data.message));

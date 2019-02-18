@@ -11,7 +11,7 @@ function user(state = { user: {} }, action) {
       return {
         ...state,
         isFetching: false,
-        user: action.payload
+        user: action.payload.client
       }
     }
     case FAIL_USER_DATA: {

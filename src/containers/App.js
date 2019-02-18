@@ -8,18 +8,6 @@ import Navbar from '../components/navbar/Navbar';
 import LoginForm from '../components/login/Login';
 import { PrivateRoute } from '../components/common/PrivateRoute';
 
-const AppContainer = styled.div`
-  display:flex;
-  flex-direction: column;
-  height: 100%;
-`;
-
-const Container = styled.div`
-  display: inherit;
-  height: inherit;
-  flex-direction: inherit;
-`;
-
 class App extends Component {
   render() {
     return (
@@ -50,3 +38,15 @@ const AppRoutes = () => (
 );
 
 export default App;
+
+const AppContainer = styled.div`
+  display:flex;
+  flex-direction: column;
+  height: 100%;
+`;
+
+const Container = styled.div`
+  display: inherit;
+  height: inherit;
+  flex-direction: inherit;
+`;
