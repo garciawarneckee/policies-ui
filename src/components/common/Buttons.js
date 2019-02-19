@@ -1,32 +1,36 @@
 import styled from 'styled-components';
+import {
+	primaryColor,
+	white,
+	cursorPointer,
+	boldWeightFont,
+	disabledColor,
+	fontFamily,
+} from './style-constants';
+
 
 export const PrimaryButton = styled.button`
 width: 100%;
-border: solid 2px #154360;
-background: #154360;
-color: #fff;
+border: solid 2px ${primaryColor};
+background: ${primaryColor};
+color: ${white};
 min-height: 40px;
-cursor: pointer;
-font-weight: bold;
+${cursorPointer}
+${boldWeightFont}
 text-transform: uppercase;
 &:disabled {
-  background-color: white;
-  border-color: #BBB;
-  color: #BBB;
+  background-color: ${white};
+  border-color: ${disabledColor};
+  color: ${disabledColor};
 }`;
 
 export const OutlinedButton = styled.button`
 	border: 0px;
-	background-color: white;
-	font-family: Roboto;
+	background-color: ${white};
+	${fontFamily}
 	font-size: 16px;
-	font-weight: bold;
+	${boldWeightFont}
 
-	&:hover { 
-		cursor: pointer;
-	}
-
-	&:focus {
-		outline: 0;
-	}
+	&:hover {  ${cursorPointer} }
+	&:focus { outline: 0; }
 `;

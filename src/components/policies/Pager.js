@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { OutlinedButton } from '../common/Buttons';
+import { SmallSpinner } from '../common/Spinners';
+import { NoContentContainer } from '../common/Containers';
 
 export default class Pager extends Component {
 
 	render() {
-		const { total, showedElements, elementsInPage, pageSize } = this.props;
+		const { 
+			total, 
+			showedElements, 
+			elementsInPage, 
+			pageSize,
+			isFetching 
+		} = this.props;
+		
 		const remaining = total - elementsInPage - showedElements;
 
 		const pager = (showedElements + elementsInPage < total) ?
@@ -15,7 +24,11 @@ export default class Pager extends Component {
 				</OutlinedButton>
 			</PagerContainer>) : null;
 
-		return (pager)
+		return (isFetching) ? 
+		(<NoContentContainer>
+			<SmallSpinner/>
+		</NoContentContainer>)
+		: pager;
 	}
 }
 
@@ -24,4 +37,5 @@ const PagerContainer = styled.div`
 	justify-content: center;
 	padding: 2em 0em;
 `;
+
 

@@ -7,6 +7,7 @@ import { getloggedUserData, logout } from '../../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { OutlinedButton } from '../common/Buttons';
+import { primaryColor, cursorPointer, boldWeightFont } from '../common/style-constants';
 
 class Navbar extends Component {
 
@@ -93,19 +94,16 @@ const Profile = styled.div`
 `;
 
 const UserData = styled.span`
-	color: #DC7633;
-	font-weight: bold;
+	color: ${primaryColor};
+	${boldWeightFont}
 `;
 
 const ProfileIcon = styled(FontAwesomeIcon)`
-	color: #DC7633;
+	color: ${primaryColor};
 	margin-right: .5em;
  `;
 
 const LogoutIcon = styled(FontAwesomeIcon)`
 	color: #C0392B;
-
-	&:hover {
-		cursor: pointer;
-	}
+	&:hover { ${cursorPointer} }
 	`;

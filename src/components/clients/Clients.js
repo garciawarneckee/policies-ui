@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import { PageContainer } from '../common/Containers';
+import { PageContainer, NoContentContainer } from '../common/Containers';
 import { PageTitle } from '../common/Paragraphs';
 import { searchClient, cleanClient } from "../../actions/clients.action";
 import ClientCard from "./ClientCard";
+import { LargeSpinner } from "../common/Spinners";
+import { boldWeightFont } from "../common/style-constants";
 
 class Clients extends Component {
 
@@ -25,9 +27,15 @@ class Clients extends Component {
   }
 
   render() {
-    const { hasError, error, client } = this.props;
+    const { hasError, error, client, isFetching } = this.props;
     const errorMessage = (hasError) ? <ErrorMessage>{error}</ErrorMessage> : null;
-    const diplayClient = (Object.keys(client).length !== 0 && !(hasError)) ? (<ClientCard client={client} />) : null;
+    const diplayClient = (Object.keys(client).length !== 0 && !(hasError) && !(isFetching)) ? (<ClientCard client={client} />) : null;
+    const spinner = (isFetching) ? (
+    <NoContentContainer>
+      <LargeSpinner />
+    </NoContentContainer>
+    ) : null;
+    
     return (
       <ClientContainer>
         <ClientTitle>Search client information</ClientTitle>
@@ -35,6 +43,7 @@ class Clients extends Component {
           <SearchBar placeholder="Enter the name or id of a client and then press ENTER..." />
         </SearchForm>
         {diplayClient}
+        {spinner}
         {errorMessage}
       </ClientContainer>
     )
@@ -44,7 +53,8 @@ class Clients extends Component {
 const mapStateToProps = state => ({
   client: state.clients.client,
   hasError: state.clients.hasError,
-  error: state.clients.error
+  error: state.clients.error,
+  isFetching: state.clients.isFetching
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -55,7 +65,6 @@ const mapDispatchToProps = dispatch => ({
 export default connect(mapStateToProps, mapDispatchToProps)(Clients);
 
 const ClientContainer = styled(PageContainer)`
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,7 +92,7 @@ const ErrorMessage = styled.h1`
   font-size: 48px;
   color: #C0392B;
   text-align: center;
-  font-weight: bold;
+  ${boldWeightFont}
   display: flex;
   margin-top: auto;
   margin-bottom: auto;

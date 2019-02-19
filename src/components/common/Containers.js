@@ -19,6 +19,21 @@ export const PageContainer = styled(DefaultContainer)`
 `;
 
 /**
+ * Blank container.
+ */
+export const NoContentContainer = styled.div`
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em 0em;
+`;
+
+export const PageNoContentContainer = styled(NoContentContainer)`
+  height: 100%;
+`;
+
+/**
  * Used inside a Page container, configured to use the whole space available in the parent container
  */
 export const Section = styled(DefaultContainer)`
