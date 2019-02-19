@@ -40,13 +40,12 @@ export function getPolicies(offset, quantity) {
       const client = clientResponse.data.client;
       const response = await axios.get(`/policies?name=${client.name}&offset=${offset}&quantity=${quantity}`, { headers: headers });
       return dispatch(receivePolicies(response.data));
-    } catch(error) {
-      switch(error.response.status) {
+    } catch (error) {
+      switch (error.response.status) {
         case 403: history.push('/forbidden'); break;
         default: dispatch(failedPolicies(error.response.data.message));
       }
     }
-
   }
 }
 
