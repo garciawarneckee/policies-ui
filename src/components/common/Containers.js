@@ -5,9 +5,23 @@ import {
 } from './style-constants';
 
 /**
+ * Blank container.
+ */
+export const NoContentContainer = styled.div`
+  ${displayFlex}
+  ${flexColumn}
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  padding: 2em 0em;
+`;
+
+/**
  * This container is prepared to display with the size of its content. 
  */
 export const DefaultContainer = styled.div`
+  ${displayFlex}
+  ${flexColumn}
   height: auto;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 10px 0px;
   background-color: rgb(255, 255, 255);
@@ -20,17 +34,6 @@ export const DefaultContainer = styled.div`
  */
 export const PageContainer = styled(DefaultContainer)`
   height: 100%;
-`;
-
-/**
- * Blank container.
- */
-export const NoContentContainer = styled.div`
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2em 0em;
 `;
 
 /**
@@ -52,7 +55,7 @@ export const Section = styled(DefaultContainer)`
  * Displays elements in a row using flexbox;
  */
 export const Row = styled.div`
-	display: flex;
+	${displayFlex}
 	flex-direction: row;
 	justify-content: space-around;
 `;

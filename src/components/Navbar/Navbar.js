@@ -7,7 +7,12 @@ import { getloggedUserData, logout } from '../../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { OutlinedButton } from '../common/Buttons';
-import { primaryColor, cursorPointer, boldWeightFont } from '../common/style-constants';
+import { 
+	primaryColor, 
+	cursorPointer, 
+	boldWeightFont, 
+	dangerColor } 
+	from '../common/style-constants';
 
 class Navbar extends Component {
 
@@ -16,12 +21,13 @@ class Navbar extends Component {
 	}
 
 	render() {
+		const user = this.props.user;
 		const navigation = (this.props.user) ?
 			<NavContainer>
 				<UnorderdedList className="navigation">
-					<ListItem><Link className="link" to="/home">Home</Link></ListItem>
-					<ListItem><Link className="link" to="/policies">Policies</Link></ListItem>
-					<ListItem><Link className="link" to="/clients">Clients</Link></ListItem>
+				<ListItem><Link className="link" to="/home">Home</Link></ListItem>
+				{ (user.role === 'admin') ?	<ListItem><Link className="link" to="/policies">Policies</Link></ListItem> : null }
+				{ (user.role ==='admin' || user.role === 'user') ? <ListItem><Link className="link" to="/clients">Clients</Link></ListItem> : null }
 				</UnorderdedList>
 				<Profile>
 					<ProfileIcon icon={faUser} />
@@ -84,7 +90,7 @@ const UnorderdedList = styled.ul`
 
 const ListItem = styled.li`
 	&:active {
-		color: #DC7633;
+		color: ${primaryColor};
 	}
 `;
 
@@ -104,6 +110,6 @@ const ProfileIcon = styled(FontAwesomeIcon)`
  `;
 
 const LogoutIcon = styled(FontAwesomeIcon)`
-	color: #C0392B;
+	color: ${dangerColor};
 	&:hover { ${cursorPointer} }
 	`;

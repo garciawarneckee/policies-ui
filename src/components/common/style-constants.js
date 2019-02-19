@@ -5,6 +5,7 @@ export const fontFamily = 'font-family: Roboto;';
 
 export const primaryColor = '#154360';
 export const disabledColor = '#BBBBBB';
+export const dangerColor = '#C0392B';
 export const white = '#FFFFFF';
 
 export const boldWeightFont = 'font-weight: bold;';

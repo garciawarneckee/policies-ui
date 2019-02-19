@@ -7,6 +7,7 @@ import Home from '../home/Home';
 import Navbar from '../navbar/Navbar';
 import LoginForm from '../login/Login';
 import { PrivateRoute } from '../common/PrivateRoute';
+import Forbidden from '../login/Forbidden';
 
 class App extends Component {
   render() {
@@ -34,6 +35,7 @@ const AppRoutes = () => (
     <PrivateRoute path="/(home)" component={Home} />
     <PrivateRoute path="/policies" component={PoliciyList} />
     <PrivateRoute path="/clients" component={Clients} />
+    <PrivateRoute path="/forbidden" component={Forbidden} />
   </Container>
 );
 
