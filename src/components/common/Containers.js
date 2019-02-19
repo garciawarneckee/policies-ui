@@ -1,4 +1,8 @@
 import styled from 'styled-components';
+import {
+  displayFlex,
+  flexColumn
+} from './style-constants';
 
 /**
  * This container is prepared to display with the size of its content. 
@@ -29,6 +33,9 @@ export const NoContentContainer = styled.div`
   padding: 2em 0em;
 `;
 
+/**
+ * Not borderded full browser size container 
+ */
 export const PageNoContentContainer = styled(NoContentContainer)`
   height: 100%;
 `;

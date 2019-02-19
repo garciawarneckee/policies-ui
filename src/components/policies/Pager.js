@@ -25,9 +25,9 @@ export default class Pager extends Component {
 			</PagerContainer>) : null;
 
 		return (isFetching) ? 
-		(<NoContentContainer>
+		(<SpinnerContainer>
 			<SmallSpinner/>
-		</NoContentContainer>)
+		</SpinnerContainer>)
 		: pager;
 	}
 }
@@ -37,5 +37,9 @@ const PagerContainer = styled.div`
 	justify-content: center;
 	padding: 2em 0em;
 `;
+
+const SpinnerContainer = styled(NoContentContainer)`
+	padding 1.5em 0em;
+`
 
 

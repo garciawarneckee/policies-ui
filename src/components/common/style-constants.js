@@ -1,4 +1,7 @@
-export const fontFamily = 'font-family: Roboto';
+export const displayFlex = 'display: flex;';
+export const flexColumn = 'flex-direction: column;';
+
+export const fontFamily = 'font-family: Roboto;';
 
 export const primaryColor = '#154360';
 export const disabledColor = '#BBBBBB';

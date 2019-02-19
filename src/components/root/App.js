@@ -31,7 +31,7 @@ const LoginRoutes = () => (
 const AppRoutes = () => (
   <Container>
     <Navbar />
-    <PrivateRoute path="/home" component={Home} />
+    <PrivateRoute path="/(home)" component={Home} />
     <PrivateRoute path="/policies" component={PoliciyList} />
     <PrivateRoute path="/clients" component={Clients} />
   </Container>
