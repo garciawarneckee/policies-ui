@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Switch, Route, Redirect} from 'react-router-dom';
-import Clients from '../pages/Clients/Clients';
-import PoliciyList from '../components/policies/PolicyList';
-import Home from '../pages/Home/Home';
-import Navbar from '../components/navbar/Navbar';
-import LoginForm from '../components/login/Login';
-import { PrivateRoute } from '../components/common/PrivateRoute';
+import Clients from '../clients/Clients';
+import PoliciyList from '../policies/PolicyList';
+import Home from '../home/Home';
+import Navbar from '../navbar/Navbar';
+import LoginForm from '../login/Login';
+import { PrivateRoute } from '../common/PrivateRoute';
 
 class App extends Component {
   render() {

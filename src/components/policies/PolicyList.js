@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import styled from 'styled-components';
 import { getPolicies, cleanPolicies } from '../../actions';
 import { DataTable, TableHeader, TableBody, CustomTd } from '../common/Table';
 import { DefaultContainer } from '../common/Containers';
@@ -35,7 +36,7 @@ class PolicyList extends Component {
   render() {
     const { policies, elementsInPage, startIndex, total, pageSize } = this.props;
     return (
-      <DefaultContainer>
+      <PoliciesContainer>
         <Title>Policies {elementsInPage + startIndex} of {total} </Title>
         <DataTable>
           <TableHeader>
@@ -64,7 +65,7 @@ class PolicyList extends Component {
           pageSize={pageSize}
           onClick={this.onPageChange}
         />
-      </DefaultContainer>
+      </PoliciesContainer>
     )
   }
 }
@@ -78,3 +79,8 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(PolicyList);
+
+
+const PoliciesContainer = styled(DefaultContainer)`
+  height: auto;
+`;

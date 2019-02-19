@@ -72,7 +72,8 @@ export function logout() {
   return async dispatch => {
     dispatch(requestLogout());
     try {
-      await axios.post("/auth/logout");
+      const headers = withSecurityHeaders();
+      await axios.post("/auth/logout", null, { headers: headers });
       dispatch(successfulLogout());
       localStorage.removeItem('authToken');
       history.push(`/login`);
