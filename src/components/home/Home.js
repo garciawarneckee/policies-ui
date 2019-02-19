@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { DefaultContainer, Section, Row, PageContainer } from '../common/Containers';
+import { Section, Row, PageContainer } from '../common/Containers';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faClock } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faClock, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import {
 	PageTitle,
 	PageSubtitle,
@@ -16,8 +16,10 @@ class Home extends Component {
 		const user = this.props.user;
 		const home = (user) ? (
 			<PageContainer>
-				<PageTitle>Welcome {user.name}!</PageTitle>
-				<PageSubtitle>In the first journey get update with the last news of this application.</PageSubtitle>
+				<PageTitleContainer>
+					<PageTitle>Welcome {user.name}!</PageTitle>
+					<PageSubtitle>In the first journey get update with the last news of this application.</PageSubtitle>
+				</PageTitleContainer>
 				<Row>
 					<Section>
 						<SectionTitleRow>
@@ -34,38 +36,43 @@ class Home extends Component {
 							<SectionTitle>Incomming features</SectionTitle>
 							<CircleTime icon={faClock}></CircleTime>
 						</SectionTitleRow>
-							<UnorderdedList>
-								<ListItem>Make reports of policies.</ListItem>
-								<ListItem>View another user policies.</ListItem>
-								<ListItem>Change user payment status.</ListItem>
-							</UnorderdedList>
+						<UnorderdedList>
+							<ListItem>Make reports of policies.</ListItem>
+							<ListItem>View another user policies.</ListItem>
+							<ListItem>Change user payment status.</ListItem>
+						</UnorderdedList>
 					</Section>
 				</Row>
 			</PageContainer>
-				) : null;
-		
-				return home;
-			}
-		}
-		
+		) : (<FontAwesomeIcon icon={faSpinner} pulse />);
+
+		return home;
+	}
+}
+
 const mapStateToProps = (state) => ({
-					user: state.user.user
+	user: state.user.user
 });
-			
+
 export default connect(mapStateToProps)(Home);
-			
-const CircleOk = styled(FontAwesomeIcon)`
-	color: #2ECC71;
+
+
+const PageTitleContainer = styled.div`
+	margin-left: .5em;
+`;
+
+const GenericIcon = styled(FontAwesomeIcon)`
 	height: 2em !important;
 	width: 2em !important;
 	margin-left: 1em;
 `;
 
-const CircleTime = styled(FontAwesomeIcon)`
+const CircleOk = styled(GenericIcon)`
+	color: #2ECC71;
+`;
+
+const CircleTime = styled(GenericIcon)`
 	color: #5D6D7E;
-	height: 2em !important;
-	width: 2em !important;
-	margin-left: 1em;
 `;
 
 const SectionTitleRow = styled(Row)`
