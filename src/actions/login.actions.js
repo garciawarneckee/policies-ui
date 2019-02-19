@@ -1,5 +1,6 @@
 import axios from 'axios';
 import history from '../middlewares/history';
+import { withSecurityHeaders } from '../middlewares/axios-headers-helper';
 
 export const REQUEST_LOGIN = 'REQUEST_LOGIN';
 export const SUCCESSFUL_LOGIN = 'SUCCESSFUL_LOGIN';
@@ -54,11 +55,12 @@ export function login(username, password) {
   return async dispatch => {
     dispatch(requestLogin(username));
     try {
+      const headers = withSecurityHeaders();
       const credentials = { username: username, password: password };
-      const response = await axios.post("/auth/login", credentials);
-      const client = response.data.client;
-      dispatch(successfulLogin(client));
-      localStorage.setItem('user', JSON.stringify(client));
+      const response = await axios.post("/auth/login", credentials, { headers: headers });
+      const token = response.data.token;
+      dispatch(successfulLogin(token));
+      localStorage.setItem('authToken', token);
       history.push(`/home`);
     } catch(error) {
       dispatch(failedLogin(error.response.data.message));
@@ -70,9 +72,10 @@ export function logout() {
   return async dispatch => {
     dispatch(requestLogout());
     try {
-      await axios.post("/auth/logout");
+      const headers = withSecurityHeaders();
+      await axios.post("/auth/logout", null, { headers: headers });
       dispatch(successfulLogout());
-      localStorage.removeItem('user');
+      localStorage.removeItem('authToken');
       history.push(`/login`);
     } catch(error) {
       dispatch(failedLogout(error.response.data.message));

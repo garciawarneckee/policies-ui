@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import { DefaultContainer } from '../../components/common/Containers';
-import { Title } from '../../components/common/Paragraphs';
+import { DefaultContainer } from '../common/Containers';
+import { Title } from '../common/Paragraphs';
 import { searchClient, cleanClient } from "../../actions/clients.action";
 import ClientCard from "./ClientCard";
 
@@ -62,7 +62,7 @@ const ClientContainer = styled(DefaultContainer)`
 
 const ClientTitle = styled(Title)`
   margin-right: auto;
-`
+`;
 
 const SearchForm = styled.form`
   display: flex;
@@ -86,4 +86,4 @@ const ErrorMessage = styled.h1`
   display: flex;
   margin-top: auto;
   margin-bottom: auto;
-`
+`;
