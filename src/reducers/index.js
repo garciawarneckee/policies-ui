@@ -1,6 +1,14 @@
 import { combineReducers } from 'redux';
-import policyReducer from './policyReducer';
+import authReducer from './auth.reducer';
+import policyReducer from './policies.reducer';
+import clientsReducer from './clients.reducer';
+import userReducer from './users.reducer';
 
-const rootReducer = combineReducers({ policies: policyReducer });
+const rootReducer = combineReducers({ 
+  auth: authReducer, 
+  policies: policyReducer, 
+  user: userReducer, 
+  clients: clientsReducer 
+});
 
 export default rootReducer;
