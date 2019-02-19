@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { getPolicies, cleanPolicies } from '../../actions';
 import { DataTable, TableHeader, TableBody, CustomTd } from '../common/Table';
 import { DefaultContainer } from '../common/Containers';
-import { Title } from '../common/Paragraphs';
+import { PageTitle } from '../common/Paragraphs';
 import Pager from './Pager';
 
 class PolicyList extends Component {
@@ -37,7 +37,7 @@ class PolicyList extends Component {
     const { policies, elementsInPage, startIndex, total, pageSize } = this.props;
     return (
       <PoliciesContainer>
-        <Title>Policies {elementsInPage + startIndex} of {total} </Title>
+        <PageTitle>Policies {elementsInPage + startIndex} of {total} </PageTitle>
         <DataTable>
           <TableHeader>
             <tr>

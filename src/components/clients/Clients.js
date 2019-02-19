@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import { DefaultContainer } from '../common/Containers';
-import { Title } from '../common/Paragraphs';
+import { PageContainer } from '../common/Containers';
+import { PageTitle } from '../common/Paragraphs';
 import { searchClient, cleanClient } from "../../actions/clients.action";
 import ClientCard from "./ClientCard";
 
@@ -54,13 +54,14 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clients);
 
-const ClientContainer = styled(DefaultContainer)`
+const ClientContainer = styled(PageContainer)`
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const ClientTitle = styled(Title)`
+const ClientTitle = styled(PageTitle)`
   margin-right: auto;
 `;
 

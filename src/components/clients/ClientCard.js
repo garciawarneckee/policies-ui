@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { DefaultContainer } from '../../components/common/Containers';
-import { Title } from '../../components/common/Paragraphs';
+import { SectionTitle } from '../../components/common/Paragraphs';
 
 export default class ClientCard extends Component {
 
@@ -10,7 +10,7 @@ export default class ClientCard extends Component {
 		return (
 			<CardContainer>
 				<CardRow>
-					<Title>{client.name}'s information</Title>
+					<SectionTitle>{client.name}'s information</SectionTitle>
 				</CardRow>
 				<CardRow>
 					<b>Identification: </b> <span>{client.id}</span>
